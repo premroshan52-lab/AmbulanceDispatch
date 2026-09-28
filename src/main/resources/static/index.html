@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Ambulance Dispatch System</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div>
+
+            <h1>
+                🚑 Ambulance Dispatch
+            </h1>
+
+            <p>
+                Nearest Ambulance Allocation &
+                Emergency Response System
+            </p>
+
+        </div>
+
+        <div class="header-actions">
+
+            <div class="user-info">
+
+                <div
+                    id="currentUsername"
+                    class="username">
+                    Loading...
+                </div>
+
+                <div
+                    id="currentRole"
+                    class="role-badge">
+                    ...
+                </div>
+
+            </div>
+
+            <button
+                    onclick="loadDashboard()"
+                    class="refresh-button">
+
+                🔄 Refresh
+
+            </button>
+
+            <button
+                    onclick="logout()"
+                    class="logout-button">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- DASHBOARD CARDS -->
+
+    <section class="cards">
+
+        <div class="card">
+
+            <div class="card-title">
+                Total Ambulances
+            </div>
+
+            <div
+                class="card-value"
+                id="totalAmbulances">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card available">
+
+            <div class="card-title">
+                Available
+            </div>
+
+            <div
+                class="card-value"
+                id="availableAmbulances">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card busy">
+
+            <div class="card-title">
+                Busy
+            </div>
+
+            <div
+                class="card-value"
+                id="busyAmbulances">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                Emergency Calls
+            </div>
+
+            <div
+                class="card-value"
+                id="totalEmergencyCalls">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card completed">
+
+            <div class="card-title">
+                Completed
+            </div>
+
+            <div
+                class="card-value"
+                id="completedCalls">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card active">
+
+            <div class="card-title">
+                Active Calls
+            </div>
+
+            <div
+                class="card-value"
+                id="activeCalls">
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EMERGENCY DISPATCH -->
+
+    <section
+        id="dispatchPanel"
+        class="panel dispatch-panel">
+
+        <h2>
+            🚨 Create Emergency Dispatch
+        </h2>
+
+        <p class="panel-description">
+
+            Select the emergency location.
+            The system will automatically allocate
+            the nearest available ambulance.
+
+        </p>
+
+        <div class="dispatch-form">
+
+            <div>
+
+                <label for="zoneSelect">
+                    Emergency Zone
+                </label>
+
+                <select id="zoneSelect">
+
+                    <option value="">
+                        Select emergency zone
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                    onclick="createEmergency()"
+                    class="dispatch-button">
+
+                🚑 Dispatch Nearest Ambulance
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="dispatchResult"
+            class="dispatch-result hidden">
+        </div>
+
+    </section>
+
+
+    <!-- EMERGENCY CALLS -->
+
+    <section class="panel">
+
+        <h2>
+            🚨 Emergency Calls
+        </h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Zone</th>
+
+                    <th>Ambulance</th>
+
+                    <th>Call Time</th>
+
+                    <th>Status</th>
+
+                    <th>Response Time</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+                </thead>
+
+
+                <tbody id="emergencyTable">
+
+                <tr>
+
+                    <td colspan="7">
+                        Loading...
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESPONSE ANALYTICS -->
+
+    <section class="panel">
+
+        <h2>
+            ⏱ Response Time Analytics
+        </h2>
+
+        <div class="response-grid">
+
+            <div class="response-box">
+
+                <span>
+                    Average Response
+                </span>
+
+                <strong id="averageResponse">
+                    0 min 00 sec
+                </strong>
+
+            </div>
+
+
+            <div class="response-box">
+
+                <span>
+                    Fastest Response
+                </span>
+
+                <strong id="fastestResponse">
+                    0 min 00 sec
+                </strong>
+
+            </div>
+
+
+            <div class="response-box">
+
+                <span>
+                    Slowest Response
+                </span>
+
+                <strong id="slowestResponse">
+                    0 min 00 sec
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AMBULANCE STATUS -->
+
+    <section class="panel">
+
+        <h2>
+            🚑 Ambulance Status
+        </h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Ambulance</th>
+
+                    <th>Zone</th>
+
+                    <th>Status</th>
+
+                    <th>Calls Handled</th>
+
+                </tr>
+
+                </thead>
+
+
+                <tbody id="ambulanceTable">
+
+                <tr>
+
+                    <td colspan="5">
+                        Loading...
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ZONE ANALYTICS -->
+
+    <section class="panel">
+
+        <h2>
+            📍 Zone-wise Analytics
+        </h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>Zone</th>
+
+                    <th>Total Calls</th>
+
+                    <th>Completed</th>
+
+                    <th>Active</th>
+
+                    <th>Average Response</th>
+
+                </tr>
+
+                </thead>
+
+
+                <tbody id="zoneTable">
+
+                <tr>
+
+                    <td colspan="5">
+                        Loading...
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        Ambulance Dispatch System
+
+        <span>•</span>
+
+        Nearest Ambulance Allocation
+
+    </footer>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

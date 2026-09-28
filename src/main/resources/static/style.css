@@ -1,0 +1,563 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+.container {
+    width: 94%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+
+/* ==============================
+   HEADER
+   ============================== */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.header p {
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background: white;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.06);
+}
+
+.username {
+    font-size: 14px;
+    font-weight: bold;
+    color: #374151;
+}
+
+.role-badge {
+    background: #dbeafe;
+    color: #1e40af;
+
+    padding: 5px 9px;
+
+    border-radius: 15px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+/* ==============================
+   BUTTONS
+   ============================== */
+
+.refresh-button {
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.refresh-button:hover {
+    opacity: 0.9;
+}
+
+.logout-button {
+    border: none;
+
+    background: #374151;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.logout-button:hover {
+    background: #111827;
+}
+
+
+/* ==============================
+   DASHBOARD CARDS
+   ============================== */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, 0.07);
+
+    border-left:
+        5px solid #2563eb;
+}
+
+.card.available {
+    border-left-color: #16a34a;
+}
+
+.card.busy {
+    border-left-color: #dc2626;
+}
+
+.card.completed {
+    border-left-color: #16a34a;
+}
+
+.card.active {
+    border-left-color: #f59e0b;
+}
+
+.card-title {
+    color: #6b7280;
+
+    font-size: 14px;
+
+    margin-bottom: 10px;
+}
+
+.card-value {
+    font-size: 30px;
+
+    font-weight: bold;
+}
+
+
+/* ==============================
+   PANELS
+   ============================== */
+
+.panel {
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, 0.07);
+}
+
+.panel h2 {
+    margin-bottom: 12px;
+
+    font-size: 21px;
+}
+
+.panel-description {
+    color: #6b7280;
+
+    margin-bottom: 20px;
+}
+
+
+/* ==============================
+   DISPATCH
+   ============================== */
+
+.dispatch-form {
+    display: flex;
+
+    align-items: end;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.dispatch-form label {
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+.dispatch-form select {
+    min-width: 250px;
+
+    padding: 12px;
+
+    border:
+        1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    background: white;
+}
+
+.dispatch-button {
+    border: none;
+
+    background: #dc2626;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.dispatch-button:hover {
+    opacity: 0.9;
+}
+
+.dispatch-result {
+    margin-top: 20px;
+
+    padding: 18px;
+
+    border-radius: 8px;
+}
+
+.dispatch-result.success {
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+.dispatch-result.error {
+    background: #fee2e2;
+
+    color: #991b1b;
+}
+
+.hidden {
+    display: none;
+}
+
+.role-hidden {
+    display: none;
+}
+
+
+/* ==============================
+   RESPONSE ANALYTICS
+   ============================== */
+
+.response-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.response-box {
+    background: #f8fafc;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+.response-box span {
+    display: block;
+
+    color: #6b7280;
+
+    margin-bottom: 10px;
+}
+
+.response-box strong {
+    font-size: 28px;
+}
+
+
+/* ==============================
+   TABLES
+   ============================== */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f1f5f9;
+}
+
+th {
+    text-align: left;
+
+    padding: 14px;
+
+    font-size: 14px;
+}
+
+td {
+    padding: 14px;
+
+    border-top:
+        1px solid #e5e7eb;
+
+    font-size: 14px;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+
+/* ==============================
+   STATUS
+   ============================== */
+
+.status {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.status.available {
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+.status.busy {
+    background: #fee2e2;
+
+    color: #991b1b;
+}
+
+.status.assigned {
+    background: #fef3c7;
+
+    color: #92400e;
+}
+
+.status.arrived {
+    background: #dbeafe;
+
+    color: #1e40af;
+}
+
+.status.completed {
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+
+/* ==============================
+   ACTION BUTTONS
+   ============================== */
+
+.action-button {
+    border: none;
+
+    padding: 7px 12px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-right: 5px;
+}
+
+.arrive-button {
+    background: #2563eb;
+
+    color: white;
+}
+
+.complete-button {
+    background: #16a34a;
+
+    color: white;
+}
+
+.action-button:hover {
+    opacity: 0.85;
+}
+
+
+/* ==============================
+   FOOTER
+   ============================== */
+
+footer {
+    text-align: center;
+
+    color: #6b7280;
+
+    padding: 20px;
+
+    font-size: 13px;
+}
+
+footer span {
+    margin: 0 8px;
+}
+
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+
+@media (max-width: 1100px) {
+
+    .cards {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+
+    .header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .header-actions {
+        width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .cards {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .response-grid {
+        grid-template-columns:
+            1fr;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .cards {
+        grid-template-columns:
+            1fr;
+    }
+
+    .dispatch-form {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .dispatch-form select {
+        width: 100%;
+    }
+
+    .header-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .user-info {
+        justify-content: space-between;
+    }
+
+    .refresh-button,
+    .logout-button {
+        width: 100%;
+    }
+}
